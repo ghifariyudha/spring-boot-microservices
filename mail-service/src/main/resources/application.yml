@@ -1,0 +1,42 @@
+server:
+  port: 8006
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: mail-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: mail-group
+      auto-offset-reset: earliest
+  mail:
+    host: in-v3.mailjet.com
+    username: REPLACE-ME
+    password: REPLACE-ME
+    port: 587
+    from: REPLACE-ME
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+  thymeleaf:
+    check-template-location: true
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+  zipkin:
+    base-url: http://localhost:9411
+
+kafka:
+  enabled: true
+  topics:
+    orderCreated: topic-orderCreated
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka

@@ -1,0 +1,41 @@
+server:
+  port: 8004
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: product-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_product
+    username: postgres
+    password: postgres
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 20
+      connection-timeout: 20000
+      idle-timeout: 20000
+  jpa:
+    show-sql: true
+    properties.hibernate.format_sql: true
+    hibernate.ddl-auto: update
+  jackson:
+    time-zone: GMT+7
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    timeout: 3000
+  zipkin:
+    base-url: http://localhost:9411
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka
+
+app:
+  jwt:
+    secret-key: fCaMV7vFnbGpznEVUxXW
